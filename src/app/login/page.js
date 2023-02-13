@@ -133,7 +133,7 @@ export default function Login() {
                 <div className="text-[14px]">Dont have an account? Lets</div>
 
                 <button className="text-[14px] ml-1 text-[#6379F4] font-bold">
-                  Sign up
+                  <Link href="/signup">Sign up</Link>
                 </button>
               </div>
             </form>

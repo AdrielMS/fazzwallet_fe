@@ -156,7 +156,7 @@ export default function Signup() {
                 <div className="text-[14px]">Already have an account? Lets</div>
 
                 <button className="text-[14px] ml-1 text-[#6379F4] font-bold">
-                  Login
+                  <Link href="/login">Login</Link>
                 </button>
               </div>
             </form>
