@@ -1,7 +1,37 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
+import React, { useState } from "react";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+
 export default function Login() {
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const router = useRouter();
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    axios({
+      method: "POST",
+      url: "http://localhost:5000/api/v1/auth/login",
+      data: loginData,
+    })
+      .then((result) => {
+        localStorage.setItem("@login", JSON.stringify(result.data.data));
+        alert(result.data.message);
+        router.push("/home");
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+      });
+  };
+
   return (
     <>
       <main className="bg-white h-screen flex h-[900px]">
@@ -53,14 +83,19 @@ export default function Login() {
               FazzPay wherever you are. Desktop, laptop, mobile phone? <br /> we
               cover all of that for you!
             </div>
-            <form className=" mt-10 ml-5 mr-5">
+            <form onSubmit={handleLogin} className=" mt-10 ml-5 mr-5">
               <div className="mb-4">
                 <span className="ml-1 block text-[12px] text-[#858D96]">
                   Email
                 </span>
                 <input
+                  onChange={(e) => {
+                    setLoginData({
+                      ...loginData,
+                      email: e.target.value,
+                    });
+                  }}
                   className="h-[50px] bg-white appearance-none border-b-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="email"
                   type="text"
                   placeholder="Enter your Email"
                 />
@@ -70,8 +105,13 @@ export default function Login() {
                   Password
                 </span>
                 <input
+                  onChange={(e) => {
+                    setLoginData({
+                      ...loginData,
+                      password: e.target.value,
+                    });
+                  }}
                   className="h-[50px] bg-white appearance-none border-b-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="email"
                   type="password"
                   placeholder="Enter your Password"
                 />

@@ -1,10 +1,42 @@
+"use client";
 import Image from "next/image";
 
+import React, { useState } from "react";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+
 export default function Signup() {
+  const [signupData, setSignupData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const router = useRouter();
+
+  const handleSignup = (event) => {
+    event.preventDefault();
+    console.log(signupData);
+    axios({
+      method: "POST",
+      url: "http://localhost:5000/api/v1/auth/register",
+      data: signupData,
+    })
+      .then((result) => {
+        setSignupData(result.data.data);
+        alert(result.data.message);
+        router.push("/login");
+        Link;
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+      });
+  };
   return (
     <>
       <main className="bg-white h-screen flex h-[1000px]">
-        <section className="bg-black invisible w-[0px] bg-hero lg:visible lg:w-screen">
+        <section className="bg-black invisible w-[0px] bg-hero lg:visible lg:w-screen h-[1000px]">
           <div className="m-[50px] align-center h-[85%]  from-violet-500 to-fuchsia-500 bg-no-repeat bg-cover">
             <div className="pl-10 invisible lg:visible">
               <Image src="/logo-white.png" width={100} height={80} alt="" />
@@ -51,19 +83,24 @@ export default function Signup() {
               FazzPay wherever you are. Desktop, laptop, mobile phone? <br /> we
               cover all of that for you!
             </div>
-            <form className=" mt-10 ml-5 mr-5">
+            <form onSubmit={handleSignup} className=" mt-10 ml-5 mr-5">
               <div className="mb-4">
                 <span className="ml-1 block text-[12px] text-[#858D96]">
-                  First Name
+                  Name
                 </span>
                 <input
+                  onChange={(e) => {
+                    setSignupData({
+                      ...signupData,
+                      name: e.target.value,
+                    });
+                  }}
                   className="h-[50px] bg-white appearance-none border-b-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="email"
                   type="text"
                   placeholder="Enter your First Name"
                 />
               </div>
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <span className="ml-1 block text-[12px] text-[#858D96]">
                   Last Name
                 </span>
@@ -73,14 +110,19 @@ export default function Signup() {
                   type="text"
                   placeholder="Enter your Last Name"
                 />
-              </div>
+              </div> */}
               <div className="mb-4">
                 <span className="ml-1 block text-[12px] text-[#858D96]">
                   Email
                 </span>
                 <input
+                  onChange={(e) => {
+                    setSignupData({
+                      ...signupData,
+                      email: e.target.value,
+                    });
+                  }}
                   className="h-[50px] bg-white appearance-none border-b-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="email"
                   type="text"
                   placeholder="Enter your Email"
                 />
@@ -90,8 +132,13 @@ export default function Signup() {
                   Password
                 </span>
                 <input
+                  onChange={(e) => {
+                    setSignupData({
+                      ...signupData,
+                      password: e.target.value,
+                    });
+                  }}
                   className="h-[50px] bg-white appearance-none border-b-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="email"
                   type="password"
                   placeholder="Enter your Password"
                 />
