@@ -7,11 +7,11 @@ export default function Home() {
   return (
     <>
       <Header />
-      <div className="flex justify-evenly p-[50px] sm:p-[20px]">
-        <div className="hidden sm:flex">
+      <div className="flex h-[100%] justify-evenly p-[50px] sm:p-[20px]">
+        <div className="hidden sm:flex w-[20%] rounded-xl bg-white drop-shadow-xl">
           <Navigation />
         </div>
-        <div>
+        <div className="">
           <div className="block sm:flex border-[1px] rounded-xl p-[40px] bg-[#6379F4] w-[100%]">
             <div className="w-[100%]">
               <h1 className="mb-[10px] text-[#FFFFFF]">Balance</h1>
@@ -29,25 +29,29 @@ export default function Home() {
               </button>
             </div>
           </div>
-          <div className="block sm:flex sm:p-[30px] sm:justify-between">
-            <div className="block">
-              <div className="flex justify-between ">
-                <Image src={"/in2.png"} width={100} height={100} />
-                <Image src={"/out2.png"} width={100} height={100} />
-              </div>
-              <div className="px-[30px]">
-                <Image src={"/graphic.png"} width={250} height={250} />
+          <div className="block md:block lg:flex mt-10 justify-between h-[55%]">
+            <div className="p-5 mr-5  bg-white rounded-xl h-[100%] drop-shadow-xl">
+              <div className="block  ">
+                <div className="flex justify-between ">
+                  <Image src="/in2.png" width={100} height={100} alt="" />
+                  <Image src="/out2.png" width={100} height={100} alt="" />
+                </div>
+                <div className="px-[30px]">
+                  <Image src="/graphic.png" width={250} height={250} alt="" />
+                </div>
               </div>
             </div>
-            <div className="history">
-              <h1>Transaction History</h1>
-              <div className="flex p-[20px]">
-                <Image src={"/user1.png"} width={50} height={50} />
-                <div className="mx-[10px]">
-                  <h1>Samuel Suhi</h1>
-                  <h2>Accept</h2>
+            <div className="bg-white rounded-xl drop-shadow-xl">
+              <div className="p-5">
+                <h1>Transaction History</h1>
+                <div className="flex p-[20px]">
+                  <Image src="/user1.png" width={50} height={50} alt="" />
+                  <div className="mx-[10px]">
+                    <h1>Samuel Suhi</h1>
+                    <h2>Accept</h2>
+                  </div>
+                  <h1>+Rp.50.000</h1>
                 </div>
-                <h1>+Rp.50.000</h1>
               </div>
             </div>
           </div>

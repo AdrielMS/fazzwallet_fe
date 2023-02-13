@@ -1,12 +1,46 @@
 import Image from "next/image";
 import { Inter } from "@next/font/google";
-import styles from "./page.module.css";
+import Header from "./component/header/Header";
+import Footer from "./component/footer/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function LandingPage() {
   return (
-    <h1 className="text-3xl font-bold underline">Landing Page</h1>
+    <>
+      <Header />
+      <div className="block content-center sm:flex justify-center">
+        <div className="hidden sm:flex">
+          <Image src="/png-phone.png" height={700} width={350} />
+        </div>
+        <div className="grid content-center">
+          <h1 className="text-[50px] w-[500px] block font-bold my-[20px]">
+            Awesome App For Saving <a className="text-[#6379F4]">Time</a>
+          </h1>
+          <div className="flex justify-center sm:hidden">
+            <Image src="/png-phone.png" height={700} width={350} />
+          </div>
+          <h2 className="display center sm:w-[400px] block content-center my-[20px]">
+            We bring you a mobile app for banking problems that oftenly wasting
+            much of your times.
+          </h2>
+          <button className="py-[10px] px-[20px] rounded-xl bg-[#6379F4] my-[20px] text-[#FFFFFF] w-[150px]">
+            Try it free
+          </button>
+          <Image
+            src="/group 50.png"
+            width={100}
+            height={50}
+            className="my-[20px]"
+          />
+        </div>
+      </div>
+      <div className="flex justify-center p-[30px] bg-[#473AD1] bg-opacity-[6%] w-[100%]">
+        <Image src="/Group 51.png" height={1000} width={500} />
+      </div>
+
+      <Footer />
+    </>
 
     // <main className={styles.main}>
     //   <div className={styles.description}>
