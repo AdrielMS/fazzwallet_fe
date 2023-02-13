@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function LandingPage() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className="block content-center sm:flex justify-center">
         <div className="hidden sm:flex">
           <Image src="/png-phone.png" height={700} width={350} />

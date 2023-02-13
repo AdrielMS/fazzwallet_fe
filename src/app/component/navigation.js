@@ -1,7 +1,16 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Navigation() {
+  const id = JSON.parse(localStorage.getItem("@login"))?.user.id;
+
+  const router = useRouter();
+
   return (
     <div className="block h-[100vh]">
       <div className="flex p-[20px] hover:border-l-[1px] border-[blue]">
@@ -38,7 +47,16 @@ export default function Navigation() {
           height={20}
           className="mr-[10px]"
         />
-        <button className="">Log Out</button>
+        <button
+          onClick={() => {
+            alert("You have been logged out");
+            localStorage.removeItem("@login");
+            router.push("/");
+          }}
+          className=""
+        >
+          Log Out
+        </button>
       </div>
     </div>
   );
