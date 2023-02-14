@@ -1,10 +1,41 @@
+"use client";
+
 import Footer from "@/app/component/footer/footer";
 import Header from "@/app/component/header/Header";
 import Navigation from "@/app/component/navigation";
+
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 
 export default function TransferSuccess() {
+  const segment = usePathname();
+  const router = useRouter();
+  const id = segment.split("/")[3];
+  const idl = JSON.parse(localStorage.getItem("@login"))?.user.id;
+  //   console.log(idl);
+  const transferDetail = parseInt(localStorage.getItem("@transferConfirm"));
+
+  const [userDetail, setUSerDetail] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/v1/auth/users/${id}`)
+      .then((res) => setUSerDetail(res.data.data))
+      .catch((err) => console.log(err));
+  });
+
+  const [senderDetail, setSenderDetail] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/v1/auth/users/${idl}`)
+      .then((res) => {
+        setSenderDetail(res.data.data);
+      })
+      .catch((err) => console.log(err));
+  });
+
   return (
     <>
       <Header />
@@ -12,8 +43,8 @@ export default function TransferSuccess() {
         <section className="hidden sm:flex w-[20%] rounded-xl bg-white drop-shadow-xl h-[100vh]">
           <Navigation />
         </section>
-        <section className="h-[100vh]">
-          <div className="p-5 mr-5  bg-white rounded-xl h-[100%] drop-shadow-lg w-[50vw]">
+        <section className="h-[100%]">
+          <div className="p-5 mr-5  bg-white rounded-xl h-[100%] drop-shadow-lg w-[50vw] h-[100%]">
             <div className="flex justify-center my-5">
               <div className="flex">
                 <Image
@@ -32,7 +63,7 @@ export default function TransferSuccess() {
                     Amount
                   </span>
                   <div className="font-bold ml-1 text-[#514F5B]">
-                    Rp.100.000
+                    {transferDetail}
                   </div>
                 </div>
               </div>
@@ -42,7 +73,7 @@ export default function TransferSuccess() {
                     Balance left
                   </span>
                   <div className="font-bold ml-1 text-[#514F5B]">
-                    Rp.1.000.000
+                    {senderDetail.balance}
                   </div>
                 </div>
               </div>
@@ -81,9 +112,9 @@ export default function TransferSuccess() {
                   </div>
                   <div className="px-2">
                     <div className="text-[#3A3D42] font-bold mb-2">
-                      Morita Hikaru
+                      {userDetail.name}
                     </div>
-                    <div className="">+62813938772</div>
+                    <div className="">{userDetail.phone}</div>
                   </div>
                 </div>
               </div>
