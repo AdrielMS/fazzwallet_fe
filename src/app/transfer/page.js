@@ -1,9 +1,29 @@
+"use client";
+
 import Navigation from "../component/navigation";
 import Header from "../component/header/Header";
 import Footer from "../component/footer/footer";
+
 import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function Transfer() {
+  const router = useRouter();
+  const [userData, setUserData] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/v1/auth/users`)
+      .then((result) => {
+        console.log(result.data.data);
+        setUserData(result.data.data);
+      })
+      .then((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <>
       <Header />
@@ -19,16 +39,25 @@ export default function Transfer() {
                 placeholder="Search Recivier Here"
                 className="w-[100%] rounded bg-[#3A3D42] bg-opacity-[10%] px-[10px]"
               />
-              <div className="flex justify-between p-[20px] ">
-                <div className="flex">
-                  <Image src="/user1.png" width={50} height={50} alt="" />
-                  <div className="mx-[10px]">
-                    <h1>Samuel Suhi</h1>
-                    <h2>Accept</h2>
+              {userData?.map((index) => {
+                return (
+                  <div className="flex justify-between p-[20px] ">
+                    <div
+                      key={index.id}
+                      onClick={() => router.push(`/transfer/${index.id}`)}
+                      className="flex p-[5px] hover:border-[1px] hover:border-black w-[100%]"
+                    >
+                      <Image src="/user1.png" width={50} height={50} alt="" />
+                      <div className="mx-[10px]">
+                        <h1>{index.name}</h1>
+                        <h2>
+                          {index.phone ? index.phone : "Phone not filled yet"}
+                        </h2>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <h1 className="justify-end">+Rp.50.000</h1>
-              </div>
+                );
+              })}
             </div>
           </div>
         </div>
