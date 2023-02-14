@@ -47,7 +47,16 @@ export default function Transfer() {
                       onClick={() => router.push(`/transfer/${index.id}`)}
                       className="flex p-[5px] hover:border-[1px] hover:border-black w-[100%]"
                     >
-                      <Image src="/user1.png" width={50} height={50} alt="" />
+                      <Image
+                        src={
+                          userData.img
+                            ? `http://localhost:5000/api/v1/public/uploads/images/${userData.img}`
+                            : `/user-default-img.jpg`
+                        }
+                        width={50}
+                        height={50}
+                        alt=""
+                      />
                       <div className="mx-[10px]">
                         <h1>{index.name}</h1>
                         <h2>

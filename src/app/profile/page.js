@@ -1,9 +1,33 @@
+"use client";
+
 import Header from "../component/header/Header";
 import Footer from "../component/footer/footer";
 import Navigation from "../component/navigation";
+
+import react, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function Profile() {
+  const router = useRouter();
+
+  const id = JSON.parse(localStorage.getItem("@login"))?.user.id;
+  const [userDetail, setUserDetail] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/v1/auth/users/${id}`)
+      .then((res) => {
+        setUserDetail(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+
+  axios.patch;
+
   return (
     <>
       <Header />
@@ -18,15 +42,22 @@ export default function Profile() {
             </div>
             <div className="flex justify-center p-[10px]">
               <Image src={"/Vector.png"} width={15} height={1} />
-              <button className="text-[10px]">Edit</button>
+              <button
+                className="text-[10px]"
+                // onClick={router.push(`/editImages/${id}`)}
+              >
+                <Link href={`/profile/editImages/${id}`}>Edit</Link>
+              </button>
             </div>
             <div className="mb-[5px]">
-              <h1 className="text-center text-[40px]">Robert Chandler</h1>
-              <h2 className="text-center">+62 813-9387-7946</h2>
+              <h1 className="text-center text-[40px]">{userDetail.name}</h1>
+              <h2 className="text-center">{userDetail.phone}</h2>
             </div>
           </div>
           <div className="flex justify-between p-[10px] bg-[#E5E8ED] rounded my-[10px]">
-            <button className="text-[#4D4B57] font-bold">Personal Info</button>
+            <button className="text-[#4D4B57] font-bold">
+              <Link href={`/profile/personalInfo/${id}`}>personal info</Link>
+            </button>
             <Image src={"/arrow-left.png"} width={20} height={10} />
           </div>
           <div className="flex justify-between p-[10px] bg-[#E5E8ED] rounded my-[10px]">
