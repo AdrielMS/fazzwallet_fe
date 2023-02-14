@@ -62,7 +62,7 @@ export default function Profile() {
           </div>
           <div className="flex justify-between p-[10px] bg-[#E5E8ED] rounded my-[10px]">
             <button className="text-[#4D4B57] font-bold">
-              Change Password
+              <Link href={`/profile/editPassword/${id}`}>Edit Password</Link>
             </button>
             <Image src={"/arrow-left.png"} width={20} height={10} />
           </div>
