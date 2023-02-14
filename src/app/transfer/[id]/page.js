@@ -1,10 +1,56 @@
+"use client";
+
 import Navigation from "../../component/navigation";
 import Header from "../../component/header/Header";
 import Footer from "../../component/footer/footer";
+
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function TransferNominal() {
+  const segment = usePathname();
+  const router = useRouter();
+  const id = segment.split("/")[2];
+  const idl = JSON.parse(localStorage.getItem("@login"))?.user.id;
+  const [userDetail, setUserDetail] = useState([]);
+  const [senderDetail, setSenderDetail] = useState([]);
+  const [transferData, setTransferData] = useState(0);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/v1/auth/users/${id}`)
+      .then((result) => {
+        console.log(result.data.data);
+        setUserDetail(result.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/v1/auth/users/${idl}`)
+      .then((res) => {
+        console.log(res.data.data);
+        setSenderDetail(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const handleTransfer = (event) => {
+    event.preventDefault();
+    parseInt(transferData);
+    console.log(transferData);
+    localStorage.setItem("@transfer", transferData);
+    router.push(`/transfer/confirm/${userDetail.id}`);
+  };
+
   return (
     <>
       <Header />
@@ -28,9 +74,9 @@ export default function TransferNominal() {
                 </div>
                 <div className="px-2">
                   <div className="text-[#3A3D42] font-bold mb-2">
-                    Morita Hikaru
+                    {userDetail.name}
                   </div>
-                  <div className="">+62813938772</div>
+                  <div className="">{userDetail.phone}</div>
                 </div>
               </div>
             </div>
@@ -40,37 +86,41 @@ export default function TransferNominal() {
                 continue to the next steps.
               </div>
             </div>
-            <form>
+            <form onSubmit={handleTransfer}>
               <div className="mb-10 flex justify-center w-full">
                 <div className="w-full">
                   <div className="flex justify-center">
                     <input
+                      onChange={(e) => {
+                        setTransferData(parseInt(e.target.value));
+                      }}
                       className="h-[50px] bg-white appearance-none border-b-2 w-[40%] text-[40px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline flex justify-center"
-                      id="email"
-                      type="text"
+                      type="number"
                       placeholder="0.00"
                     />
                   </div>
                   <div className="font-bold my-10 flex justify-center">
-                    Rp. 1.000.000 available
+                    {senderDetail.balance}
                   </div>
                   <div className="flex justify-center">
                     <input
                       className="h-[50px] bg-white appearance-none border-b-2 w-[45%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      id="email"
                       type="text"
                       placeholder="add some notes"
                     />
                   </div>
                 </div>
               </div>
-              <Link href="/transferConfirm" className="w-full">
-                <div className="flex justify-end">
-                  <button className="bg-[#6379F4] text-white rounded-lg h-[50px] w-[30%] ">
-                    Continue
-                  </button>
-                </div>
-              </Link>
+              {/* <Link href="/transferConfirm" className="w-full"> */}
+              <div className="flex justify-end">
+                <button
+                  type="submit"
+                  className="bg-[#6379F4] text-white rounded-lg h-[50px] w-[30%] "
+                >
+                  Continue
+                </button>
+              </div>
+              {/* </Link> */}
             </form>
           </div>
         </section>
