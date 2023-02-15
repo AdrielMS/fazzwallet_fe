@@ -27,6 +27,8 @@ export default function Profile() {
   });
 
   const [changeData, setChangeData] = useState({
+    name: "",
+    email: "",
     phone: "",
   });
 
@@ -39,7 +41,7 @@ export default function Profile() {
     })
       .then((result) => {
         alert(result.data.message);
-        router.refresh();
+        router.reload();
       })
       .catch((err) => {
         console.log(err);
@@ -54,45 +56,67 @@ export default function Profile() {
           <Navigation />
         </div>
         <div className="w-[50vw]">
-          <div className="shadow-xl p-[10px]">
-            <div className="mb-[5px] p-[30px] ">
-              <h1 className="font-bold text-[20px]">Personal Information</h1>
-              <h2 className="w-[50%] text-[15px]">
-                We got your personal information from the sign up proccess. If
-                you want to make changes on your information, contact our
-                support.
-              </h2>
-            </div>
-            <div className="mb-[30px] p-[30px] ">
-              <h1 className="font-bold text-[20px]">Name</h1>
-              <h2 className="text-[15px]">{userDetail.name}</h2>
-            </div>
-            <div className="mb-[30px] p-[30px] ">
-              <h1 className="font-bold text-[20px]">Verified Email</h1>
-              <h2 className="text-[15px]">{userDetail.email}</h2>
-            </div>
-            <div className="mb-[30px] p-[30px] ">
-              <h1 className="font-bold text-[20px]">Phone Number</h1>
-              <form onSubmit={handleUpdate} className="flex justify-between">
+          <form onSubmit={handleUpdate} className="flex justify-between">
+            <div className="shadow-xl p-[10px]">
+              <div className="mb-[5px] p-[30px] ">
+                <h1 className="font-bold text-[20px]">Personal Information</h1>
+                <h2 className="w-[50%] text-[15px]">
+                  We got your personal information from the sign up proccess. If
+                  you want to make changes on your information, contact our
+                  support.
+                </h2>
+              </div>
+              <div className="mb-[30px] p-[30px] ">
+                <h1 className="font-bold text-[20px]">Name</h1>
                 <input
                   onChange={(e) => {
                     setChangeData({
                       ...changeData,
-                      phone: e.target.value,
+                      name: e.target.value,
                     });
                   }}
-                  className="text-[15px]"
-                  placeholder={userDetail.phone}
+                  className="text-[15px] w-[100%]"
+                  placeholder={userDetail.name}
                 />
-                <button
-                  type="submit"
-                  className="border-[1px] border-white text-[#6379F4]"
-                >
-                  Change
-                </button>
-              </form>
+              </div>
+              <div className="mb-[30px] p-[30px] ">
+                <h1 className="font-bold text-[20px]">Verified Email</h1>
+                <input
+                  onChange={(e) => {
+                    setChangeData({
+                      ...changeData,
+                      email: e.target.value,
+                    });
+                  }}
+                  className="text-[15px] w-[100%]"
+                  placeholder={userDetail.email}
+                />
+              </div>
+              <div className="mb-[30px] p-[30px] ">
+                <h1 className="font-bold text-[20px]">Phone Number</h1>
+                {/* <form onSubmit={handleUpdate} className="flex justify-between"> */}
+                <div className="flex justify-between">
+                  <input
+                    onChange={(e) => {
+                      setChangeData({
+                        ...changeData,
+                        phone: e.target.value,
+                      });
+                    }}
+                    className="text-[15px] w-[100%]"
+                    placeholder={userDetail.phone}
+                  />
+                  <button
+                    type="submit"
+                    className="border-[1px] border-white text-[#6379F4]"
+                  >
+                    Change
+                  </button>
+                </div>
+                {/* </form> */}
+              </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
       <Footer />
