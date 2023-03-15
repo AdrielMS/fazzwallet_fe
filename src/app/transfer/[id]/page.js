@@ -9,12 +9,14 @@ import Link from "next/link";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 export default function TransferNominal() {
   const segment = usePathname();
   const router = useRouter();
   const id = segment.split("/")[2];
-  const idl = JSON.parse(localStorage.getItem("@login"))?.user.id;
+  // const idl = JSON.parse(localStorage.getItem("@login"))?.user.id;
+  const idl = JSON.parse(Cookies.get("@login"))?.user.id;
   const [userDetail, setUserDetail] = useState([]);
   const [senderDetail, setSenderDetail] = useState([]);
   const [transferData, setTransferData] = useState(0);
@@ -47,7 +49,8 @@ export default function TransferNominal() {
     event.preventDefault();
     parseInt(transferData);
     console.log(transferData);
-    localStorage.setItem("@transfer", transferData);
+    // localStorage.setItem("@transfer", transferData);
+    Cookies.set("@transfer", transferData);
     router.push(`/transfer/confirm/${userDetail.id}`);
   };
 

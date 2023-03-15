@@ -5,6 +5,7 @@ import Link from "next/link";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 export default function Navigation() {
   const id = JSON.parse(localStorage.getItem("@login"))?.user.id;
@@ -50,7 +51,8 @@ export default function Navigation() {
         <button
           onClick={() => {
             alert("You have been logged out");
-            localStorage.removeItem("@login");
+            // localStorage.removeItem("@login");
+            Cookies.remove("@login");
             router.push("/");
           }}
           className=""

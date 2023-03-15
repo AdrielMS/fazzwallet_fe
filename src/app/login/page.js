@@ -6,6 +6,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 export default function Login() {
   const [loginData, setLoginData] = useState({
@@ -23,7 +24,8 @@ export default function Login() {
       data: loginData,
     })
       .then((result) => {
-        localStorage.setItem("@login", JSON.stringify(result.data.data));
+        // localStorage.setItem("@login", JSON.stringify(result.data.data));
+        Cookies.set("@login", JSON.stringify(result.data.data));
         alert(result.data.message);
         router.push("/home");
       })
