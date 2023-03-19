@@ -16,7 +16,7 @@ export default function TransferNominal() {
   const router = useRouter();
   const id = segment.split("/")[2];
   // const idl = JSON.parse(localStorage.getItem("@login"))?.user.id;
-  const idl = JSON.parse(Cookies.get("@login"))?.user.id;
+  const idl = Cookies.get("@id");
   const [userDetail, setUserDetail] = useState([]);
   const [senderDetail, setSenderDetail] = useState([]);
   const [transferData, setTransferData] = useState(0);
@@ -47,7 +47,7 @@ export default function TransferNominal() {
 
   const handleTransfer = (event) => {
     event.preventDefault();
-    parseInt(transferData);
+    // parseInt(transferData);
     console.log(transferData);
     // localStorage.setItem("@transfer", transferData);
     Cookies.set("@transfer", transferData);
@@ -63,9 +63,7 @@ export default function TransferNominal() {
         </section>
         <section className="">
           <div className="p-5 mr-5  bg-white rounded-xl h-[100%] drop-shadow-lg w-[50vw]">
-            <div className="font-bold" key={userDetail.id}>
-              Transfer to
-            </div>
+            <div className="font-bold">Transfer to</div>
             <div className="py-[40px]">
               <div className="flex items-center p-[10px] bg-white rounded-lg my-[10px] drop-shadow-md mb-7 h-[100px]">
                 <div className="px-2">
@@ -97,7 +95,7 @@ export default function TransferNominal() {
                   <div className="flex justify-center">
                     <input
                       onChange={(e) => {
-                        setTransferData(parseInt(e.target.value));
+                        setTransferData(e.target.value);
                       }}
                       className="h-[50px] bg-white appearance-none border-b-2 w-[40%] text-[40px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline flex justify-center"
                       type="number"

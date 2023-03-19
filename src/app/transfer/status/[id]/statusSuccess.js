@@ -9,14 +9,17 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 
 export default function TransferSuccess() {
   const segment = usePathname();
   const router = useRouter();
   const id = segment.split("/")[3];
-  const idl = JSON.parse(localStorage.getItem("@login"))?.user.id;
+  // const idl = JSON.parse(localStorage.getItem("@login"))?.user.id;
+  const idl = Cookies.get("@id");
   //   console.log(idl);
-  const transferDetail = parseInt(localStorage.getItem("@transferConfirm"));
+  // const transferDetail = parseInt(localStorage.getItem("@transferConfirm"));
+  const transferDetail = Cookies.get("@transferConfirm");
 
   const [userDetail, setUSerDetail] = useState([]);
   useEffect(() => {
