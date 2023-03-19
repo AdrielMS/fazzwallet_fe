@@ -25,7 +25,8 @@ export default function Login() {
     })
       .then((result) => {
         // localStorage.setItem("@login", JSON.stringify(result.data.data));
-        Cookies.set("@login", JSON.stringify(result.data.data));
+        Cookies.set("@login", result.data.data);
+        Cookies.set("@id", result.data.data.user.id);
         alert(result.data.message);
         router.push("/home");
       })

@@ -63,7 +63,9 @@ export default function TransferNominal() {
         </section>
         <section className="">
           <div className="p-5 mr-5  bg-white rounded-xl h-[100%] drop-shadow-lg w-[50vw]">
-            <div className="font-bold">Transfer to</div>
+            <div className="font-bold" key={userDetail.id}>
+              Transfer to
+            </div>
             <div className="py-[40px]">
               <div className="flex items-center p-[10px] bg-white rounded-lg my-[10px] drop-shadow-md mb-7 h-[100px]">
                 <div className="px-2">
