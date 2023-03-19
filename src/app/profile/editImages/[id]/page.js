@@ -13,15 +13,15 @@ export default function editImages() {
   // const id = JSON.parse(localStorage.getItem("@login"))?.user.id;
   const id = JSON.parse(Cookies.get("@login"))?.user.id;
 
-  const [userDetail, setUserDetail] = React.useState([]);
+  const [userDetail, setUserDetail] = useState([]);
 
-  const [image, setImage] = React.useState(null);
+  const [image, setImage] = useState(null);
   const onImageUploads = (e) => {
     const file = e.target.value[0];
     setImage(File);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     axios
       .get(`http://localhost:5000/api/v1/auth/users/${id}`)
       .then((res) => {
