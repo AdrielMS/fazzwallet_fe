@@ -41,9 +41,8 @@ export default function Transfer() {
               />
               {userData?.map((index) => {
                 return (
-                  <div className="flex justify-between p-[20px]">
+                  <div className="flex justify-between p-[20px]" key={index.id}>
                     <div
-                      key={index.id}
                       onClick={() => router.push(`/transfer/${index.id}`)}
                       className="flex p-[5px] hover:border-[1px] hover:border-black w-[100%]"
                     >
