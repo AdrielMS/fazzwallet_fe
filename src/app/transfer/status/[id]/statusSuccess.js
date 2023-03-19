@@ -109,7 +109,7 @@ export default function TransferSuccess() {
                   <div className="px-2">
                     <Image
                       className="rounded-xl"
-                      src="/runrun.png"
+                      src="/user-default-img.jpg"
                       width={80}
                       height={80}
                       alt=""
