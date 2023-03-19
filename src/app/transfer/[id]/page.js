@@ -37,7 +37,7 @@ export default function TransferNominal() {
   useEffect(() => {
     axios
       // .get(`http://localhost:5000/api/v1/auth/users/${idl}`)
-      .get(`https://fazzwallet.cyclic.app/api/v1/auth/users/${id}`)
+      .get(`https://fazzwallet.cyclic.app/api/v1/auth/users/${idl}`)
       .then((res) => {
         console.log(res.data.data);
         setSenderDetail(res.data.data);
