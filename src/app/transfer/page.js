@@ -14,7 +14,8 @@ export default function Transfer() {
   const [userData, setUserData] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/v1/auth/users`)
+      // .get(`http://localhost:5000/api/v1/auth/users`)
+      .get(`https://fazzwallet.cyclic.app/api/v1/auth/users`)
       .then((result) => {
         console.log(result.data.data);
         setUserData(result.data.data);
@@ -49,7 +50,7 @@ export default function Transfer() {
                       <Image
                         src={
                           userData.img
-                            ? `http://localhost:5000/api/v1/public/uploads/images/${userData.img}`
+                            ? `https://fazzwallet.cyclic.app/api/v1/public/uploads/images/${userData.img}`
                             : `/user-default-img.jpg`
                         }
                         width={50}

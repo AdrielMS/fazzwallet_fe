@@ -12,7 +12,8 @@ export default function Login() {
   const [dataUser, setDataUser] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/v1/auth/users/${id}`)
+      // .get(`http://localhost:5000/api/v1/auth/users/${id}`)
+      .get(`https://fazzwallet.cyclic.app/api/v1/auth/users/${id}`)
       .then((result) => {
         setDataUser(result.data.data);
       })

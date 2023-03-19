@@ -19,7 +19,8 @@ export default function Profile() {
   const [userDetail, setUserDetail] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/v1/auth/users/${id}`)
+      // .get(`http://localhost:5000/api/v1/auth/users/${id}`)
+      .get(`https://fazzwallet.cyclic.app/api/v1/auth/users/${id}`)
       .then((res) => {
         setUserDetail(res.data.data);
       })
@@ -36,7 +37,8 @@ export default function Profile() {
     event.preventDefault();
     axios({
       method: "PATCH",
-      url: `http://localhost:5000/api/v1/auth/users/${id}`,
+      // url: `http://localhost:5000/api/v1/auth/users/${id}`,
+      url: `https://fazzwallet.cyclic.app/api/v1/auth/users/${id}`,
       data: changeData,
     })
       .then((result) => {

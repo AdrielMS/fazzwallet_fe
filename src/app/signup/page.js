@@ -20,7 +20,8 @@ export default function Signup() {
     console.log(signupData);
     axios({
       method: "POST",
-      url: "http://localhost:5000/api/v1/auth/register",
+      // url: "http://localhost:5000/api/v1/auth/register",
+      url: "https://fazzwallet.cyclic.app/api/v1/auth/register",
       data: signupData,
     })
       .then((result) => {
