@@ -34,7 +34,7 @@ export default function Login() {
           <div className="px-2">
             <Image
               className="rounded-xl"
-              src="/rectangle 25.png"
+              src="/user-default-img.jpg"
               width={40}
               height={40}
               alt=""
