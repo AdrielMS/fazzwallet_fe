@@ -54,6 +54,7 @@ export default function Navigation() {
             alert("You have been logged out");
             // localStorage.removeItem("@login");
             Cookies.remove("@login");
+            Cookies.remove("@id");
             router.push("/");
           }}
           className=""
