@@ -8,7 +8,8 @@ import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 
 export default function Navigation() {
-  const id = JSON.parse(localStorage.getItem("@login"))?.user.id;
+  // const id = JSON.parse(localStorage.getItem("@login"))?.user.id;
+  const id = Cookies.get("@id");
 
   const router = useRouter();
 
