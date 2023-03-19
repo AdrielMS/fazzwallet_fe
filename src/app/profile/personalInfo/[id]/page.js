@@ -15,7 +15,7 @@ export default function Profile() {
   const router = useRouter();
 
   // const id = JSON.parse(localStorage.getItem("@login"))?.user.id;
-  const id = Cookies.get("@login")?.user.id;
+  const id = Cookies.get("@id");
   const [userDetail, setUserDetail] = useState([]);
   useEffect(() => {
     axios
