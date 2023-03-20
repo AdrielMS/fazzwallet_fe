@@ -21,7 +21,7 @@ export default function Signup() {
     axios({
       method: "POST",
       // url: "http://localhost:5000/api/v1/auth/register",
-      url: "https://fazzwallet.cyclic.app/api/v1/auth/register",
+      url: "https://fazzwalletbe-adrel-production.up.railway.app/api/v1/auth/register",
       data: signupData,
     })
       .then((result) => {

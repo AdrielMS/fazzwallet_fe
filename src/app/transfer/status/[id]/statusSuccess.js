@@ -25,7 +25,9 @@ export default function TransferSuccess() {
   useEffect(() => {
     axios
       // .get(`http://localhost:5000/api/v1/auth/users/${id}`)
-      .get(`https://fazzwallet.cyclic.app/api/v1/auth/users/${id}`)
+      .get(
+        `https://fazzwalletbe-adrel-production.up.railway.app/api/v1/auth/users/${id}`
+      )
       .then((res) => setUSerDetail(res.data.data))
       .catch((err) => console.log(err));
   });
@@ -34,7 +36,9 @@ export default function TransferSuccess() {
   useEffect(() => {
     axios
       // .get(`http://localhost:5000/api/v1/auth/users/${idl}`)
-      .get(`https://fazzwallet.cyclic.app/api/v1/auth/users/${idl}`)
+      .get(
+        `https://fazzwalletbe-adrel-production.up.railway.app/api/v1/auth/users/${idl}`
+      )
       .then((res) => {
         setSenderDetail(res.data.data);
       })

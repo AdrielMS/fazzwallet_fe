@@ -13,7 +13,9 @@ export default function Login() {
   useEffect(() => {
     axios
       // .get(`http://localhost:5000/api/v1/auth/users/${id}`)
-      .get(`https://fazzwallet.cyclic.app/api/v1/auth/users/${id}`)
+      .get(
+        `https://fazzwalletbe-adrel-production.up.railway.app/api/v1/auth/users/${id}`
+      )
       .then((result) => {
         setDataUser(result.data.data);
       })

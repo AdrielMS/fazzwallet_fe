@@ -21,7 +21,7 @@ export default function Login() {
     axios({
       method: "POST",
       // url: "http://localhost:5000/api/v1/auth/login",
-      url: "https://fazzwallet.cyclic.app/api/v1/auth/login",
+      url: "https://fazzwalletbe-adrel-production.up.railway.app/api/v1/auth/login",
       data: loginData,
     })
       .then((result) => {

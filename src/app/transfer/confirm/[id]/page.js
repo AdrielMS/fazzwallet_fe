@@ -24,7 +24,9 @@ export default function ConfirmTransfer() {
   useEffect(() => {
     axios
       // .get(`http://localhost:5000/api/v1/auth/users/${id}`)
-      .get(`https://fazzwallet.cyclic.app/api/v1/auth/users/${id}`)
+      .get(
+        `https://fazzwalletbe-adrel-production.up.railway.app/api/v1/auth/users/${id}`
+      )
       .then((result) => {
         console.log(result.data.data);
         setUserDetail(result.data.data);
@@ -39,7 +41,9 @@ export default function ConfirmTransfer() {
   useEffect(() => {
     axios
       // .get(`http://localhost:5000/api/v1/auth/users/${idl}`)
-      .get(`https://fazzwallet.cyclic.app/api/v1/auth/users/${idl}`)
+      .get(
+        `https://fazzwalletbe-adrel-production.up.railway.app/api/v1/auth/users/${idl}`
+      )
       .then((res) => {
         console.log(res.data.data);
         setSenderDetail(res.data.data);
@@ -61,7 +65,7 @@ export default function ConfirmTransfer() {
     axios({
       method: "POST",
       // url: "http://localhost:5000/api/v1/profile/transfer",
-      url: "https://fazzwallet.cyclic.app/api/v1/profile/transfer",
+      url: "https://fazzwalletbe-adrel-production.up.railway.app/api/v1/profile/transfer",
       data: transferConfirm,
     })
       .then((result) => {
